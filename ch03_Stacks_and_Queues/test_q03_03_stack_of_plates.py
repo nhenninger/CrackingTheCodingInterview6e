@@ -2,7 +2,7 @@ import unittest
 from q03_03_stack_of_plates import SetOfStacks
 
 
-class Test_Q03_03_Stack_Of_Plates(unittest.TestCase):
+class TestQ03_03StackOfPlates(unittest.TestCase):
     def setUp(self):
         self.set_of_stacks = SetOfStacks()
         for i in range(42 ** 2):

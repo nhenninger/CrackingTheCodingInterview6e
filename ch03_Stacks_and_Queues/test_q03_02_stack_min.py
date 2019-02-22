@@ -2,7 +2,7 @@ import unittest
 from q03_02_stack_min import StackMin, StackMinNode
 
 
-class Test_Q03_02_Stack_Min(unittest.TestCase):
+class TestQ03_02StackMin(unittest.TestCase):
     def setUp(self):
         self.stack_min = StackMin()
         self.stack_min.push(0)

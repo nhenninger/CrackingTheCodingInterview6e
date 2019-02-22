@@ -2,7 +2,7 @@ import unittest
 from q03_01_three_in_one import three_in_one
 
 
-class Test_Q03_01_Three_In_One(unittest.TestCase):
+class TestQ03_01ThreeInOne(unittest.TestCase):
     def setUp(self):
         self.arr_len = 20
 

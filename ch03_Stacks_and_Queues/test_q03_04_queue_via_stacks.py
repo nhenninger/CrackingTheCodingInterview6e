@@ -2,7 +2,7 @@ import unittest
 from q03_04_queue_via_stacks import MyQueue
 
 
-class Test_Q03_04_Queue_Via_Stacks(unittest.TestCase):
+class TestQ03_04QueueViaStacks(unittest.TestCase):
     def setUp(self):
         self.my_queue = MyQueue()
         self.num_elements = 1337

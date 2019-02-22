@@ -3,7 +3,7 @@ from random import shuffle
 from q03_05_sort_stack import sort_stack
 
 
-class Test_Q03_05_Sort_Stack(unittest.TestCase):
+class TestQ03_05SortStack(unittest.TestCase):
     def setUp(self):
         self.stack_A = [i for i in range(20)]
         self.stack_B = [i * i for i in range(20)]

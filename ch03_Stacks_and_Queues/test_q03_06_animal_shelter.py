@@ -6,7 +6,7 @@ from q03_06_animal_shelter import (Animal,
                                    Dog)
 
 
-class Test_Q03_06_Animal_Shelter(unittest.TestCase):
+class TestQ03_06AnimalShelter(unittest.TestCase):
     def setUp(self):
         self.shelter_one = AnimalShelter()
         self.shelter_two = AnimalShelterTwoLists()
