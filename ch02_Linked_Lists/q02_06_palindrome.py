@@ -3,7 +3,7 @@ from linked_list_node import LinkedListNode
 
 
 # 2.6   Palindrome
-def palindrome(node: LinkedListNode) -> bool:
+def palindrome(head: LinkedListNode) -> bool:
     """Check if a linked list is a palindrome.
 
     Ignores punctuation, whitespace, and case.
@@ -12,11 +12,11 @@ def palindrome(node: LinkedListNode) -> bool:
     Memory: O(n)
     """
     chars = deque([])
-    while node is not None:
-        ch = chr(node.data)
+    while head is not None:
+        ch = chr(head.data)
         if ch.isalpha():
             chars.append(ch.lower())
-        node = node.next
+        head = head.next
     while len(chars) >= 2:
         if chars.pop() != chars.popleft():
             return False
