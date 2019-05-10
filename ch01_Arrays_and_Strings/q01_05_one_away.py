@@ -11,20 +11,20 @@ def one_away(a: str, b: str) -> bool:
         return False
     elif len(a) == len(b):  # Replacing char
         found_diff = False
-        for i in range(len(a)):
-            if a[i] != b[i] and found_diff:
+        for i, ch in enumerate(a):
+            if ch != b[i] and found_diff:
                 return False
-            elif a[i] != b[i]:
+            elif ch != b[i]:
                 found_diff = True
     else:  # Insert/remove char
-        big_arr = a if len(a) > len(b) else b
-        short_arr = b if len(a) > len(b) else a
-        big_i = 0
-        for i in range(len(short_arr)):
-            if short_arr[i] != big_arr[big_i] and big_i - i == 1:
+        big = a if len(a) > len(b) else b
+        small = b if len(a) > len(b) else a
+        j = 0
+        for i, ch in enumerate(small):
+            if ch != big[j] and j - i == 1:
                 return False
-            elif short_arr[i] != big_arr[big_i]:
-                big_i += 2
+            elif ch != big[j]:
+                j += 2
             else:
-                big_i += 1
+                j += 1
     return True
