@@ -1,3 +1,6 @@
+from collections import defaultdict
+
+
 # 1.2   Check Permutation
 def check_permutation(a: str, b: str) -> bool:
     """Determine if two strings are permutations of each other.
@@ -7,12 +10,9 @@ def check_permutation(a: str, b: str) -> bool:
     Runtime: O(a+b)
     Memory: O(a+b)
     """
-    chars = {}
+    chars = defaultdict(int)
     for ch in a:
-        if ch in chars:
-            chars[ch] += 1
-        else:
-            chars[ch] = 1
+        chars[ch] += 1
     for ch in b:
         if ch not in chars:
             return False
