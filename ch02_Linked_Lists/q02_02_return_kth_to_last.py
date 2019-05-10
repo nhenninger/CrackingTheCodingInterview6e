@@ -27,7 +27,7 @@ def return_kth_to_last_recursive(head: LinkedListNode, k: int) -> int:
     return node.data if node is not None else None
 
 
-def return_kth_to_last_recursive_helper(head: LinkedListNode, k: int) -> tuple:
+def return_kth_to_last_recursive_helper(head: LinkedListNode, k: int) -> (LinkedListNode, int):
     if head is None:
         return None, -1  # Off the end!
 
