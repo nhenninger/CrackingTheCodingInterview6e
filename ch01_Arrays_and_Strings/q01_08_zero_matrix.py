@@ -1,5 +1,5 @@
 # 1.8   Zero Matrix
-def zero_matrix(matrix, m, n) -> list:
+def zero_matrix(matrix: list, m: int, n: int) -> list:
     """Propagate zero elements to the entire row and column in a matrix.
 
     If an element in an MxN matrix is zero, its entire row and column are set
@@ -24,7 +24,7 @@ def zero_matrix(matrix, m, n) -> list:
     return matrix
 
 
-def zero_matrix_constant_memory(matrix, m, n) -> list:
+def zero_matrix_constant_memory(matrix: list, m: int, n: int) -> list:
     """Propagate zero elements to the entire row and column in a matrix.
 
     If an element in an MxN matrix is zero, its entire row and column are set

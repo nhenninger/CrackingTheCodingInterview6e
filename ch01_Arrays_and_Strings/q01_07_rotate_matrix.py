@@ -1,5 +1,5 @@
 # 1.7   Rotate Matrix
-def rotate_matrix(matrix, n) -> list:
+def rotate_matrix(matrix: list, n: int) -> list:
     """Rotate an NxN matrix 90 degrees counterclockwise.
 
     Runtime: O(n^2)
@@ -15,7 +15,7 @@ def rotate_matrix(matrix, n) -> list:
 
 
 # https://www.geeksforgeeks.org/inplace-rotate-square-matrix-by-90-degrees/
-def rotate_matrix_inplace(matrix, n) -> list:
+def rotate_matrix_inplace(matrix: list, n: int) -> list:
     """Rotate an NxN matrix 90 degrees counterclockwise in place.
 
     Runtime: O(n^2)
