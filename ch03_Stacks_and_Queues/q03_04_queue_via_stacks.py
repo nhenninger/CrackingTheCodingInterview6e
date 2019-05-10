@@ -3,7 +3,7 @@ class MyQueue(object):
     """A custom queue composed of two stacks.
     """
 
-    def __init__(self, *args, **kwargs) -> None:
+    def __init__(self) -> None:
         self._stack_A = []
         self._stack_B = []
 

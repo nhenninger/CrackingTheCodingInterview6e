@@ -3,7 +3,7 @@ class SetOfStacks(object):
     """A grouping of stacks.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self):
         self._set = [[]]
         self._threshold = 42
 
