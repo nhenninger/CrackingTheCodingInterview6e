@@ -4,12 +4,12 @@ class Animal(object):
 
     Attributes:
         date: An integer.  Lower numbers entered the shelter before higher.
-        next_animal: The next animal in the queue.
+        next: The next animal in the queue.
     """
 
     def __init__(self, date: int):
         self.date = date
-        self.next_animal = None
+        self.next = None
 
 
 class Dog(Animal):
@@ -29,65 +29,60 @@ class AnimalShelter(object):
     dog, the first dog, or the first of all animals.
 
     Singly linked list version.
-
-    Attributes:
-        front: The front of the queue, i.e., the oldest animal.
-        tail: The back of the queue, i.e., the most recently admitted animal.
     """
 
     def __init__(self):
-        self.front = None
-        self.tail = None
+        self._head = None
+        self._tail = None
 
     def enqueue(self, animal: Animal) -> None:
         """Add an animal to the back of the queue.
         """
-        if self.front is None and self.tail is None:
-            self.front = self.tail = animal
+        if self._head is None and self._tail is None:
+            self._head = self._tail = animal
         else:
-            self.tail.next_animal = animal
-            self.tail = self.tail.next_animal
+            self._tail.next = animal
+            self._tail = animal
 
     def dequeue_any(self) -> Animal:
         """Remove and return the oldest animal (dog or cat) from the queue.
         """
-        if self.front is None:
+        if self._head is None:
             return None
-        temp = self.front
-        self.front = self.front.next_animal
+        temp = self._head
+        self._head = self._head.next
         return temp
 
     def dequeue_dog(self) -> Dog:
         """Remove and return the oldest dog from the queue.
         """
-        if isinstance(self.front, Dog):
-            return self.dequeue_any()
-        runner = self.front
-        while runner is not None and not isinstance(runner.next_animal, Dog):
-            runner = runner.next_animal
-        if runner is None:
-            return None
-        found_dog = runner.next_animal
-        if found_dog is self.tail:
-            self.tail = runner
-        runner.next_animal = found_dog.next_animal
+        found_dog = self._dequeue_type(Dog)
+        assert (found_dog is None or isinstance(found_dog, Dog))
         return found_dog
 
     def dequeue_cat(self) -> Cat:
         """Remove and return the oldest cat from the queue.
         """
-        if isinstance(self.front, Cat):
-            return self.dequeue_any()
-        runner = self.front
-        while runner is not None and not isinstance(runner.next_animal, Cat):
-            runner = runner.next_animal
-        if runner is None:
-            return None
-        found_cat = runner.next_animal
-        if found_cat is self.tail:
-            self.tail = runner
-        runner.next_animal = found_cat.next_animal
+        found_cat = self._dequeue_type(Cat)
+        assert (found_cat is None or isinstance(found_cat, Cat))
         return found_cat
+
+    def _dequeue_type(self, pet_type: type) -> Animal:
+        if isinstance(self._head, pet_type):
+            return self.dequeue_any()
+
+        runner = self._head
+        while runner is not None and not isinstance(runner.next, pet_type):
+            runner = runner.next
+        if runner is None:  # End of queue
+            return None
+        found = runner.next
+        if found is self._tail:
+            self._tail = runner
+            self._tail.next = None
+        else:
+            runner.next = found.next
+        return found
 
 
 class AnimalShelterTwoLists(object):
@@ -119,14 +114,14 @@ class AnimalShelterTwoLists(object):
                 self.oldest_cat = animal
                 self.newest_cat = animal
             else:
-                self.newest_cat.next_animal = animal
+                self.newest_cat.next = animal
                 self.newest_cat = animal
         elif isinstance(animal, Dog):
             if self.oldest_dog is None:
                 self.oldest_dog = animal
                 self.newest_dog = animal
             else:
-                self.newest_dog.next_animal = animal
+                self.newest_dog.next = animal
                 self.newest_dog = animal
         else:
             raise TypeError()
@@ -144,19 +139,19 @@ class AnimalShelterTwoLists(object):
     def dequeue_dog(self) -> Dog:
         """Remove and return the oldest dog from the queue.
         """
-        dog = self.oldest_dog
-        if dog is None:
+        if self.oldest_dog is None:
             return None
         else:
-            self.oldest_dog = self.oldest_dog.next_animal
-        return dog
+            dog = self.oldest_dog
+            self.oldest_dog = self.oldest_dog.next
+            return dog
 
     def dequeue_cat(self) -> Cat:
         """Remove and return the oldest cat from the queue.
         """
-        cat = self.oldest_cat
-        if cat is None:
+        if self.oldest_cat is None:
             return None
         else:
-            self.oldest_cat = self.oldest_cat.next_animal
-        return cat
+            cat = self.oldest_cat
+            self.oldest_cat = self.oldest_cat.next
+            return cat
