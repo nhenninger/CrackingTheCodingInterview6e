@@ -35,7 +35,7 @@ def sum_lists_reverse(a: LinkedListNode,
 
 def sum_lists_reverse_recursive(a: LinkedListNode,
                                 b: LinkedListNode,
-                                carry=0) -> LinkedListNode:
+                                carry: int = 0) -> LinkedListNode:
     """Add two integers stored as a linked list without intermediate conversion.
 
     Each digit of the integer is a node, and the 1's place is the head node.
@@ -80,7 +80,7 @@ def sum_lists_forward(a: LinkedListNode,
             y *= 10
         b = b.next
     total = x + y
-    head = curr = None
+    head = None
     while total > 0:
         digit = total % 10
         total = total // 10
@@ -110,7 +110,7 @@ def sum_lists_forward_stack(a: LinkedListNode,
     while b is not None:
         stack_b.append(b.data)
         b = b.next
-    head = curr = None
+    head = None
     carry = 0
     while len(stack_a) > 0 or len(stack_b) > 0 or carry == 1:
         x = stack_a.pop() if len(stack_a) > 0 else 0
